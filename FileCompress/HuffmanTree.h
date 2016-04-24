@@ -93,7 +93,7 @@ public:
 			parent->_right = second;
 			first->_parent = parent;
 			second->_parent = parent;
-			
+
 			//如果插入权重重复， 
 			minHeap.Push(parent);
 
@@ -139,7 +139,7 @@ void TestHuffmanTree_P()
 	int ar[] = { 2, 3, 6, 0, 4, 5, 1, 9, 7, 8 };
 	//int ar[] = { 1,1,1,1,2,2 };
 	HuffmanTree_P<int> tree;
-	tree.CreateHuffmanTree(ar, sizeof(ar)/sizeof(int), -1);
+	tree.CreateHuffmanTree(ar, sizeof(ar) / sizeof(int), -1);
 	tree.LevelOrder();
 }
 

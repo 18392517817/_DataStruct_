@@ -1,5 +1,5 @@
 #pragma once
- 
+
 #include <vector>
 #include<iostream>
 #include<assert.h>
@@ -13,7 +13,7 @@ struct Less
 	// operator<
 	bool operator() (const T& left, const T& right)
 	{
-		return left < right; 
+		return left < right;
 	}
 };
 //¥Û∂—
@@ -23,11 +23,11 @@ struct Greater
 	// operator>
 	bool operator() (const T& left, const T& right)
 	{
-		return left> right; 
+		return left> right;
 	}
 };
 
- 
+
 //template<class T, class Compare = Greater <T> >//¥Û∂—
 template<class T, class Compare = Less<T> >//–°∂—
 class Heap
@@ -42,7 +42,7 @@ public:
 	{
 		assert(array);
 		//≤Â»Î ˝æ›
-		for (int i = 0; i< size; ++i)
+		for (int i = 0; i < size; ++i)
 		{
 			_vec.push_back(array[i]);
 		}
@@ -161,7 +161,7 @@ public:
 
 };
 
- //≤‚ ‘∂—
+//≤‚ ‘∂—
 void TestHeap()
 {
 	//¥Û∂—≤‚ ‘
@@ -176,20 +176,20 @@ void TestHeap()
 
 	while (!heap.Empty())
 	{
-		cout<<heap.GetTop()<<" ";
+		cout << heap.GetTop() << " ";
 		heap.Pop();
 	}
-	cout<<endl;
+	cout << endl;
 
 	//–°∂—≤‚ ‘
 	//int array[10] = {9,1,3,5,6,7,8,0,2,4};
-	int array[10] = {10,16,18,12,11,13,15,17,14,19};
+	int array[10] = { 10, 16, 18, 12, 11, 13, 15, 17, 14, 19 };
 	Heap<int> heap1(array, 10);
 
 	while (!heap1.Empty())
 	{
-		cout<<heap1.GetTop()<<" ";
+		cout << heap1.GetTop() << " ";
 		heap1.Pop();
 	}
-	cout<<endl;
+	cout << endl;
 }
