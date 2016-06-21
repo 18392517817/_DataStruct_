@@ -1,3 +1,4 @@
+
 #include"SeqList.h"
 
 void InitSeqList(SeqList *list)
