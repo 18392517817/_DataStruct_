@@ -281,9 +281,62 @@ void Test9()
 	char *common = commomstring(str1,str2);
 	cout << common << endl;
 }
+
+char *get2String(long num)
+{
+	int i = 0;
+	char *buffer;
+	char *temp;
+
+	buffer = (char*)malloc(33);
+	temp = buffer;
+	for (i = 0; i < 32; i++)
+	{
+		temp[i] = num&(1<<(31-i));
+		temp[i] = temp[i] >> (31-i);
+		temp[i] = (temp[i] == 0) ? '0' : '1';
+	}
+	buffer[32] = '\0';
+
+	return buffer;
+}
+void Test10()
+{
+	char *p = NULL;
+	int num = 123;
+	cout <<"10进制：" <<num << endl;
+	p = get2String(num);
+	cout << "2进制：" << p << endl;
+
+}
+char * myreverse(  char * str,int len)
+{
+	if (len <= 1)
+		return str;
+
+	char t = *str;
+	*str = (char)*(str+len-1);//
+	*(str + len - 1) =(char) t;
+	//swap(*str,*(str+len-1));
+	 
+ 	return (myreverse(str+1,len-2)-1);
+}
+void Test11()
+{
+	char *str = "123456";
+	cout << str << endl;
+
+	char*str1 = myreverse(str,strlen(str));
+	cout << str1 << endl;
+}
+
+
+
 int main()
 {
-	Test9();
+	//Test11();//?未解决
+	//Test10();
+	//Test9();
 	//Test8();
 	//Test7();
 	//Test6();
@@ -295,3 +348,41 @@ int main()
 	return 0;
 
 }
+
+
+
+//#include <stdio.h>
+////#include <unistd.h>
+//#include <stdlib.h>
+//
+//void fun()
+//{
+//	printf("haha, i am a bad boy!\n");
+//	//sleep(2);
+//	printf("you are done...\n");
+//	//sleep(3);
+//	//system("reboot");
+//	 system("pause");
+//
+//	 exit(1);
+//}
+//
+//int fun1(int a, int b)
+//{
+//	int *p = &a;
+//	p--;
+//	*p = (int)fun;
+//	//int c = 0xcccc;
+//	 //return c;
+//	return 1;
+//}
+//int main()
+//{
+//	printf("begin running...\n");
+//	int a = 0xaaaa;
+//	int b = 0xbbbb;
+//	fun1(a, b);
+//	printf("you should run here\n");
+//	system("pause");
+//	return 0;
+//}
