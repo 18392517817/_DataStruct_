@@ -386,15 +386,83 @@ void Test14()
 	
 	printf("%f\n", 5);        //?
 	printf("%f\n", (float)5); //5.000000
-	printf("%lf\n", 5.01);    //
+	printf("%lf\n", 5.01);    //5.010000
 	printf("%f\n", f);        //5.000000
 
-	printf("%d\n", 5.01);     //
+	printf("%d\n", 5.01);     //?
 	printf("%d\n", i);        //5
 }
-int main()
+
+ //C++面向对象
+//#define public private  //正确，把public宏定义为private
+class Animal
 {
-	Test14();
+public:
+	void MakeNoise(){ cout << "MakeNoise()" << endl; }
+
+};
+void Test15()
+{
+	Animal an;
+	//an.MakeNoise();
+}
+class Test
+{
+public:
+	Test(){}
+	//潜在的二义性
+	//Test(char *Name, int len = 0){}
+	Test(char *Name, int len){}
+	Test(char*Name){}
+};
+
+struct CLS
+{
+	int m_i;
+	CLS(int i):m_i(i)
+	{
+		//在栈上生成一个临时对象，
+		//CLS();//互相调用将会栈溢出，而非死循环，
+		cout << "CLS(int):this=" << this << endl;
+	}
+	CLS()
+	{
+		CLS(0);//调用了CLS(int i);但是并没有给m_i初始化
+		cout << "CLS():this=" << this << endl;
+
+	}
+};
+void Test16()
+{
+	CLS obj;
+	cout << "&obj" << &obj << endl;
+	cout << obj.m_i << endl; //不是0
+
+}
+
+void a_b(int a,int b)
+{
+	cout << "a="<<a << "b=" << b << endl;
+}
+void Test17()
+{
+	int a = 1;
+	//printf("%d  %d\n",a++,++a);
+	cout << a++ << " " << ++a << endl;
+	 a = 0;
+	cout << a++ << a++ << a++ << endl;
+	int c = 1;
+	a_b(c++,++c);
+}
+
+
+int main()
+{ 
+
+	Test17();
+	//Test16();
+	//Test15();
+	//Test14();
 	//Test13();
 	//Test12();
 	//Test11();//?未解决
@@ -414,38 +482,4 @@ int main()
 
 
 
-//#include <stdio.h>
-////#include <unistd.h>
-//#include <stdlib.h>
-//
-//void fun()
-//{
-//	printf("haha, i am a bad boy!\n");
-//	//sleep(2);
-//	printf("you are done...\n");
-//	//sleep(3);
-//	//system("reboot");
-//	 system("pause");
-//
-//	 exit(1);
-//}
-//
-//int fun1(int a, int b)
-//{
-//	int *p = &a;
-//	p--;
-//	*p = (int)fun;
-//	//int c = 0xcccc;
-//	 //return c;
-//	return 1;
-//}
-//int main()
-//{
-//	printf("begin running...\n");
-//	int a = 0xaaaa;
-//	int b = 0xbbbb;
-//	fun1(a, b);
-//	printf("you should run here\n");
-//	system("pause");
-//	return 0;
-//}
+
