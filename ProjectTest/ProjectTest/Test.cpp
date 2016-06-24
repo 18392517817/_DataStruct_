@@ -330,10 +330,73 @@ void Test11()
 	cout << str1 << endl;
 }
 
+char * mystrcat(char *dest,const char *src)
+{
+	char *ret = dest;
+	while (*dest++);
+	dest--;			// '\0'
+	while (*dest++ = *src++); //dest+=src;
 
+	return ret;
+}
+void Test12()
+{
+	char dest[1024] = "hello ";//拥有足够空间可以容纳下src的内容
+	char *src = "world!";
+	mystrcat(dest,src);
+	cout << "dest="<<dest << endl;
+}
 
+int gbk_strlen(const char *str)
+{
+	const char *p = str;
+	while (*p)
+	{
+		if (*p < 0 && (*(p + 1)<0 || *(p + 1)>63))
+		{
+			str++;
+			p += 2;
+		}
+		else
+		{
+			p++;
+		}
+	}
+	return (p-str);
+}
+void Test13()
+{
+	char str[] = "abc你好123中国456";
+	cout << "str="<<str << endl;
+	cout << "gbk_strlen(str)=" << gbk_strlen(str) << endl;
+	cout <<"strlen(str)=" <<strlen(str) << endl;
+	cout << "sizeod(str)=" << sizeof(str) << endl;
+}
+
+//位运算与嵌入式编程
+void Test14()
+{
+	cout << "sizeof(int)=" << sizeof(int) << endl;				//4
+	cout << "sizeof(float)=" << sizeof(float) << endl;			//4
+	cout << "sizeof(double)=" << sizeof(double) << endl;		//8
+	cout << "sizeof(long)=" << sizeof(long) << endl;            //4
+	cout << "sizeof(long long)=" << sizeof(long long) << endl;  //8
+	int i = 5.01;
+	float f = 5;
+	
+	printf("%f\n", 5);        //?
+	printf("%f\n", (float)5); //5.000000
+	printf("%lf\n", 5.01);    //
+	printf("%f\n", f);        //5.000000
+
+	printf("%d\n", 5.01);     //
+	printf("%d\n", i);        //5
+}
 int main()
 {
+	Test14();
+	//Test13();
+	//Test12();
 	//Test11();//?未解决
 	//Test10();
 	//Test9();
